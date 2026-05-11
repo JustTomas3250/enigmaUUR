@@ -1,0 +1,40 @@
+.enigma{
+    background-color: var(--color-primary);
+    padding: .5rem;
+    border-radius: .5rem;
+    width: fit-content;
+    margin: 1rem auto;
+}
+
+.wheelHolder{
+    width: 20rem;
+}
+
+.wheelBox{
+    background-color: var(--color-primary);
+    padding: .5rem;
+    border-radius: .5rem;
+    width: 30rem;
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+}
+
+.wheelId{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--color-accent);
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.wheelPicker{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.wheelOptions{
+    color: var(--color-secondary);
+    font-size: 1.3rem;
+}
