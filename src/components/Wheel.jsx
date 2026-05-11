@@ -31,13 +31,14 @@ function Wheel({ id }) {
                     onChange={setPickerValue}
                     wheelMode="natural"
                 >
-                    {Object.keys(selections).map(name => (
-                        <Picker.Column key={name} name={name}>
-                            {selections[name].map(option => (
+                    {Object.keys(selections).map(options => (
+                        <Picker.Column key={options} name={options}>
+                            {selections[options].map(option => (
                                 <Picker.Item key={option} value={option}>
                                     <div className="wheelOptions" style={{
                                         filter: option === pickerValue.options ? 'brightness(0.5)' : 'none',
-                                        fontWeight: pickerValue.options === option ? 'bold' : 'normal'
+                                        fontWeight: pickerValue.options === option ? 'bold' : 'normal',
+                                        fontSize: pickerValue.options === option ? '1.5em' : '1.2em',
                                     }}>
                                         {option % 100}
                                     </div>
