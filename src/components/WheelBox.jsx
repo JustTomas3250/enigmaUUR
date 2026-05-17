@@ -17,7 +17,7 @@ function WheelBox() {
                 disableResize: true,
                 maxRow: 1,
                 acceptWidgets: true,
-                cellHeight: 230,
+                cellHeight: 160,
             }, gridRef.current);
         }
 

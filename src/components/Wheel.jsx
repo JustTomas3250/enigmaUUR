@@ -30,6 +30,7 @@ function Wheel({ id }) {
                     value={pickerValue}
                     onChange={setPickerValue}
                     wheelMode="natural"
+                    height={150}
                 >
                     {Object.keys(selections).map(options => (
                         <Picker.Column key={options} name={options}>
@@ -38,7 +39,7 @@ function Wheel({ id }) {
                                     <div className="wheelOptions" style={{
                                         filter: option === pickerValue.options ? 'brightness(0.5)' : 'none',
                                         fontWeight: pickerValue.options === option ? 'bold' : 'normal',
-                                        fontSize: pickerValue.options === option ? '1.5em' : '1.2em',
+                                        fontSize: pickerValue.options === option ? '1.5em' : '1.2em'
                                     }}>
                                         {option % 100}
                                     </div>

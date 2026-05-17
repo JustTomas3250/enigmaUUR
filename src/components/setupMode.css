@@ -4,20 +4,23 @@
     border-radius: .5rem;
     width: fit-content;
     margin: 1rem auto;
+    border: 0.2rem solid var(--color-secondary);
 }
 
 .wheelHolder{
-    width: 20rem;
+    width: 15rem;
+    margin: auto;
 }
 
 .wheelBox{
     background-color: var(--color-primary);
     padding: .5rem;
     border-radius: .5rem;
-    width: 30rem;
+    width: 20rem;
     position: absolute;
-    right: 2rem;
+    right: 10rem;
     top: 1rem;
+    border: 0.2rem solid var(--color-secondary);
 }
 
 .wheelId{
@@ -37,4 +40,57 @@
 .wheelOptions{
     color: var(--color-secondary);
     font-size: 1.3rem;
+}
+
+.cables-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    overflow: visible;  
+}
+
+.plugboardRow{
+    display: flex;
+    flex-direction: row;
+}
+
+.plugboardLetter{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--color-secondary);
+    width: 2rem;
+    height: 3rem;
+    border: 0.1rem solid var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.2rem;
+    flex-direction: column;
+}
+
+.plugboardLetter p{
+    margin: -3.5rem 0;
+    font-size: 4rem;
+    color: var(--color-secondary);
+    z-index: 1;
+}
+
+.plugboardLetter button{
+    z-index: 10;
+    margin-top: -3.1rem;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: none;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.plugboardLetter:hover{
+    background-color: var(--color-primary-dark);
 }
