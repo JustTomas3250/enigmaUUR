@@ -1,17 +1,131 @@
 import React, { useState } from 'react';
 import './App.css';
-import WheelHolder from './components/WheelHolder';
-import WheelBox from './components/WheelBox';
 import EnigmaSetup from './components/EnigmaSetup';
 import Nav from './components/Nav';
+import './Enigma.css';
+import Enigma from './components/Enigma';
+import WheelBox from './components/WheelBox';
+import Alert from '@mui/material/Alert';
+import CustomAlert from './components/CustomAlert';
+import Notes from './components/Notes';
+import Button from './components/Button';
+import MissionText from './components/MissionText';
+import About from './components/About';
 
 function App() {
+    const [navPage, setNavPage] = useState('sandBoxSetup');
+    const [setup, setSetup] = useState({
+        wheels: [],
+        plugboard: []
+    });
+    const [alert, setAlert] = useState([]);
+    const [letter, setLetter] = useState('');
+    const [sandBoxSetup, setSandBoxSetup] = useState(true)
+
+    const renderPage = () => {
+        switch (navPage) {
+            case 'sandBoxSetup':
+                return (
+                    <>
+                        <h1>Sandbox - setup</h1>
+                        <EnigmaSetup setup={setup} setSetup={setSetup} />
+                        <WheelBox setup={setup} />
+                        <Button onClick={() => {
+                            if (setup.wheels.length < 3) {
+                                setAlert(prev => ([ ...prev, ["To enter the sandbox, please select 3 wheels", 'error'] ]));
+                                return;
+                            }
+                            setNavPage('sandBox');
+                        }}
+                        >
+                            Enter Sandbox
+                        </Button>
+                    </>
+                );
+                break;
+            case 'sandBox':
+                return (
+                    <>
+                        <h1>Sandbox</h1>
+                        <Enigma setup={setup} setSetup={setSetup} letter={letter} setLetter={setLetter} />
+                        <Notes />
+                        <Button onClick={() => {
+                            setNavPage('sandBoxSetup');
+                        }}
+                        >
+                            Return to setup
+                        </Button>
+                    </>
+                );
+                break;
+            case 'missionsSetup':
+                return (
+                    <>
+                        <h1>Mission - setup</h1>
+                        <EnigmaSetup setup={setup} setSetup={setSetup} />
+                        <WheelBox setup={setup} />
+                        <Button onClick={() => {
+                            if (setup.wheels.length < 3) {
+                                setAlert(prev => ([ ...prev, ["To enter the mission, please select 3 wheels", 'error'] ]));
+                                return;
+                            }
+                            setNavPage('missions');
+                        }}
+                        >
+                            Try Mission
+                        </Button>
+                        <MissionText />
+                    </>
+                );
+            case 'missions':
+                return (
+                    <>
+                        <h1>Mission</h1>
+                        <Enigma setup={setup} setSetup={setSetup} letter={letter} setLetter={setLetter} />
+                        <Notes />
+                        <Button onClick={() => {
+                            setNavPage('missionsSetup');
+                        }}
+                        >
+                            Return to setup
+                        </Button>
+                        <MissionText />
+                    </>
+                );
+                break;
+            case 'about':
+                return (
+                    <>
+                        <h1>About</h1>
+                        <About />
+                    </>
+                );
+                break;
+            default:
+                return (<></>);
+        }
+    };
+
+    const renderAlerts = () => {
+        return alert.map((a, index) => (
+            <CustomAlert 
+                key={index} 
+                text={a[0]} 
+                severity={a[1]} 
+                index={index} 
+                onRemove={() => {
+                    setAlert(prev => prev.filter((_, i) => i !== index));
+                }}
+            />
+        ));
+    };
+
     return (
         <>
             <div className='setupMode'>
-                <EnigmaSetup />
-                <WheelBox />
-                <Nav />
+                {renderAlerts()}
+                {renderPage()}
+                <Nav page={navPage} setPage={setNavPage} />
             </div>
         </>
     )

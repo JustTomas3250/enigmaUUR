@@ -1,22 +1,24 @@
 import React from 'react';
-import WheelHolder from './WheelHolder';
+import WheelHolderSetup from './WheelHolderSetup';
 import './setupMode.css';
 import OutKey from './OutKey';
 import Inkey from './InKey';
-import Plugboard from './Plugboard';
+import PlugboardSetup from './PlugboardSetup';
 import OutLog from './OutLog';
 
-function EnigmaSetup() {
+function EnigmaSetup({ setup, setSetup }) {
     return (
         <div className="enigma">
-            <WheelHolder />
+            <WheelHolderSetup setSetup={setSetup} setup={setup} />
             <OutKey />
             <hr />
             <Inkey />
             <hr />
-            <Plugboard />
-            <hr />
-            <OutLog entries={[""]} />
+            <PlugboardSetup setSetup={setSetup} setup={setup} />
+            {/*
+                <hr />
+                <OutLog entries={setup} />
+            */}
         </div>
     );
 }

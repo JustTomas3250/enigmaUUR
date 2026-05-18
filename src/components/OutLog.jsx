@@ -3,11 +3,14 @@ import React from "react";
 function OutLog({ entries }) {
     return (
         <div className="outLog">
-            {entries.map((entry, index) => (
+            {entries.wheels.map((entry, index) => (
                 <div key={index} className="outLogEntry">
-                    {entry.split('').map((char, i) => (
-                        <span key={i}>{char}</span>
-                    ))}
+                    <span key={index}>{`id: ${entry.id}, pos: ${entry.position}, value: ${entry.value}`}</span>
+                </div>
+            ))}
+            {entries.plugboard && entries.plugboard.map((conn, index) => (
+                <div key={index} className="outLogEntry">
+                    <span>{`from: ${conn.from}, to: ${conn.to}`}</span>
                 </div>
             ))}
         </div>

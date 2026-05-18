@@ -1,0 +1,26 @@
+.missionText {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 25rem;
+    margin: 1rem auto;
+    border: 0.2rem solid var(--color-secondary);
+    position: absolute;
+    top: 7rem;
+    left: 10rem;
+}
+
+.missionText h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.missionImportant {
+    color: var(--color-bg);
+    font-weight: bold;
+    background-color: var(--color-primary-dark);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}

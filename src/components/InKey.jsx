@@ -1,12 +1,18 @@
 import React from "react";
-import './Enigma.css';
+import '../Enigma.css';
 
-function OutKey() {
+function InKey({ letter, typeLetter, typeMode }) {
     const letters = [
         ['Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O'], 
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K'], 
         ['P', 'Y', 'X', 'C', 'V', 'B', 'N', 'M', 'L']
     ];
+
+    const type = (l) => {
+        if (!typeMode) return;
+
+        typeLetter(l);
+    }
 
     return (
         <div className="outKey">
@@ -16,9 +22,9 @@ function OutKey() {
                         marginLeft: rowIndex == 1 ? '1.25rem' : 'auto'
                     }}>
                         {
-                            row.map(letter => (
-                                <div key={letter} className="outKeyLetter">
-                                    <button>{letter}</button>
+                            row.map(l => (
+                                <div key={l} className="outKeyLetter">
+                                    <button onClick={() => type(l)}>{l}</button>
                                 </div>
                             ))
                         }
@@ -29,4 +35,4 @@ function OutKey() {
     );
 }
 
-export default OutKey;
+export default InKey;

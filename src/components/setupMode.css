@@ -1,25 +1,40 @@
 .enigma{
     background-color: var(--color-primary);
-    padding: .5rem;
-    border-radius: .5rem;
+    padding:  1vw;
+    border-radius: 1vw;
     width: fit-content;
-    margin: 1rem auto;
+    margin: 1vw auto;
     border: 0.2rem solid var(--color-secondary);
 }
 
 .wheelHolder{
     width: 15rem;
     margin: auto;
+
+    border: 0.2rem solid var(--color-secondary);
+
+    background-image: linear-gradient(
+        to right,   
+        var(--color-primary) 0%,
+        var(--color-primary) 32%,   
+        var(--color-secondary) 32.5%,       
+        var(--color-secondary) 33.5%,  
+        var(--color-primary) 33.5%,   
+        var(--color-primary) 66.5%,   
+        var(--color-secondary) 66.5%,       
+        var(--color-secondary) 67.5%,  
+        var(--color-primary) 68%,   
+        var(--color-primary) 100%
+    );
 }
 
 .wheelBox{
     background-color: var(--color-primary);
-    padding: .5rem;
-    border-radius: .5rem;
-    width: 20rem;
+    border-radius: 1vw;
+    width: 25rem;
     position: absolute;
-    right: 10rem;
-    top: 1rem;
+    right: 10vw;
+    top: 7.5vw;
     border: 0.2rem solid var(--color-secondary);
 }
 
@@ -88,9 +103,12 @@
     font-size: inherit;
     font-weight: inherit;
     color: inherit;
+}
+
+.pblHover{
     cursor: pointer;
 }
 
-.plugboardLetter:hover{
+.pblHover:hover{
     background-color: var(--color-primary-dark);
 }

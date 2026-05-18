@@ -1,12 +1,20 @@
-import React, {useRef, useEffect} from "react";
+import React, {useRef, useEffect, useState} from "react";
 import 'gridstack/dist/gridstack.min.css';
 import { GridStack } from 'gridstack';
 import './setupMode.css';
-import Wheel from "./Wheel";
+import Wheel from "./WheelSetup";
 
-function WheelBox() {
+function WheelBox({ setup}) {
     const gridRef = useRef(null);
     const gridInstance = useRef(null);
+
+    const [pocatecniDostupnaKola] = useState(() => {
+        const vsechnaKola = [1, 2, 3, 4, 5];
+        
+        const pouzitaKolaIds = setup.wheels.map(w => parseInt(w.id));
+        
+        return vsechnaKola.filter(id => !pouzitaKolaIds.includes(id));
+    });
 
     useEffect(() => {
         if (!gridInstance.current) {
@@ -32,7 +40,7 @@ function WheelBox() {
     return (
         <div className="wheelBox grid-stack" ref={gridRef}>
             {
-                [1, 2, 3, 4, 5].map((item) => (
+                pocatecniDostupnaKola.map((item) => (
                     <div className="grid-stack-item" gs-w="1" gs-h="1" key={item}>
                         <Wheel key={item} id={item} />
                     </div>

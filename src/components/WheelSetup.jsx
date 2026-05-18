@@ -1,41 +1,57 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import './setupMode.css';
 import 'gridstack/dist/gridstack.min.css';
 import Picker from "react-mobile-picker";
-import '../Enigma.css';
 
-function Wheel({ id, position, value }) {
+
+function WheelSetup({ id, value }) {
+    const wheelRef = useRef(null);
+
+    console.log("Renderuji kolo s id: ", id, " a hodnotou: ", value);
+
     let opt = []
-    
+
     for (let i = 1; i <= 20; i++) {
         for (let j = 1; j <= 26; j++) {
             opt.push(i * 100 + j);
         }
     }
 
-    useEffect(() => {
-        setPickerValue({ options: 200 + value });
-    }, [value]);
-
     const selections = {
         options: opt
     };
 
+    useEffect(() => {
+        value !== undefined && setPickerValue({ options: 1000 + value });
+    }, [value]);
+
     const [pickerValue, setPickerValue] = useState({
-        options: 200 + value
+        options: value || 1001
     });
+
+    const handlePickerChange = (newValue) => {
+        setPickerValue(newValue);
+
+        const rotationValue = newValue.options % 100;
+
+        const event = new CustomEvent('wheel-rotated', { 
+            detail: { id: id, value: rotationValue } 
+        });
+        window.dispatchEvent(event);
+    };
 
     return (
         <div 
-            className="wheel"
+            className="wheel grid-stack-item-content" 
             data-wheel-id={id} 
             data-wheel-value={pickerValue.options % 100} 
+            ref={wheelRef}
         >
-            <span className="wheelIdAlign">{id}</span>
+            <span className="wheelId">{id}</span>
             <div className="wheelPicker">
                 <Picker
                     value={pickerValue}
-                    onChange={setPickerValue}
+                    onChange={handlePickerChange}
                     wheelMode="natural"
                     height={150}
                 >
@@ -60,4 +76,4 @@ function Wheel({ id, position, value }) {
     );
 }
 
-export default Wheel;
+export default WheelSetup;
