@@ -1,0 +1,26 @@
+.navButton{
+    background-color: var(--color-background);
+    color: var(--color-bg);
+    font-size: 4vw;
+    cursor: pointer;
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+    border: none;
+}
+
+.navList{
+    list-style: none;
+}
+
+.navList button{
+    background-color: transparent;
+    color: var(--color-secondary);
+    font-size: 1.5em;
+    border: none;
+    cursor: pointer;
+}
+
+.navList button:hover{
+    color: var(--color-primary);
+}

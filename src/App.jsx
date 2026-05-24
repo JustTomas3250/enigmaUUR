@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import './App.css';
-import EnigmaSetup from './components/EnigmaSetup';
-import Nav from './components/Nav';
-import './Enigma.css';
-import Enigma from './components/Enigma';
-import WheelBox from './components/WheelBox';
+import EnigmaSetup from './components/setupMode/EnigmaSetup';
+import Nav from './components/nav/Nav';
+import Enigma from './components/enigma/Enigma';
+import WheelBox from './components/wheelBox/WheelBox';
 import Alert from '@mui/material/Alert';
 import CustomAlert from './components/CustomAlert';
-import Notes from './components/Notes';
-import Button from './components/Button';
-import MissionText from './components/MissionText';
-import About from './components/About';
+import Notes from './components/notes/Notes';
+import Button from './components/button/Button';
+import MissionText from './components/missions/MissionText';
+import About from './components/about/About';
+
+import './components/enigma/enigma.css'
+import './components/setupMode/setupMode.css'
 
 function App() {
     const [navPage, setNavPage] = useState('sandBoxSetup');

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import './setupMode.css';
 import 'gridstack/dist/gridstack.min.css';
 import Picker from "react-mobile-picker";
 

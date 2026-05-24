@@ -1,8 +1,8 @@
 import React, {useRef, useEffect, useState} from "react";
 import 'gridstack/dist/gridstack.min.css';
 import { GridStack } from 'gridstack';
-import './setupMode.css';
-import Wheel from "./WheelSetup";
+import Wheel from "../setupMode/WheelSetup";
+import './wheelBox.css'
 
 function WheelBox({ setup}) {
     const gridRef = useRef(null);

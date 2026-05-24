@@ -1,5 +1,4 @@
 import React from "react";
-import './About.css';
 import { Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 
 function About() {

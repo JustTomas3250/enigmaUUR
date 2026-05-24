@@ -1,0 +1,9 @@
+.wheelBox{
+    background-color: var(--color-primary);
+    border-radius: 1vw;
+    width: 25rem;
+    position: absolute;
+    right: 10vw;
+    top: 7.5vw;
+    border: 0.2rem solid var(--color-secondary);
+}

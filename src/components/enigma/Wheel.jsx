@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from "react";
-import './setupMode.css';
 import 'gridstack/dist/gridstack.min.css';
 import Picker from "react-mobile-picker";
-import '../Enigma.css';
 
 function Wheel({ id, position, value }) {
     let opt = []

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import Cable from "./Cable";
-import './setupMode.css';
+import Cable from "../enigma/Cable";
 
 function PlugboardSetup({ setSetup, setup }) {
     const [connections, setConnections] = useState(setup.plugboard || []);

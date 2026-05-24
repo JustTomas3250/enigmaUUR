@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import '../Enigma.css';
 
 function OutKey({ letterOut, setLetter }) {
     const letters = [
@@ -22,12 +21,12 @@ function OutKey({ letterOut, setLetter }) {
         <div className="outKey">
             {
                 letters.map((row, rowIndex) => (
-                    <div key={rowIndex} className="outKeyRow" style={{
+                    <div key={rowIndex} className="keyRow" style={{
                         marginLeft: rowIndex == 1 ? '1.25rem' : 'auto'
                     }}>
                         {
                             row.map(letter => (
-                                <div key={letter} className="outKeyLetter" style={{backgroundColor: letterOut == letter ? 'var(--color-alert)' : 'transparent'}}>
+                                <div key={letter} className="keyLetter" style={{backgroundColor: letterOut == letter ? 'var(--color-alert)' : 'transparent'}}>
                                     <span>{letter}</span>
                                 </div>
                             ))

@@ -1,7 +1,7 @@
 import React from "react";
 import Drawer from '@mui/material/Drawer';
 import { IoMenu } from "react-icons/io5";
-import '../Enigma.css'
+import './nav.css'
 
 function Nav({ page, setPage }) {
     const [open, setOpen] = React.useState(false);

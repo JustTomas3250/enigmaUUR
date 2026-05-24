@@ -1,5 +1,4 @@
 import React from "react";
-import '../Enigma.css';
 
 function InKey({ letter, typeLetter, typeMode }) {
     const letters = [
@@ -15,15 +14,15 @@ function InKey({ letter, typeLetter, typeMode }) {
     }
 
     return (
-        <div className="outKey">
+        <div className="inKey">
             {
                 letters.map((row, rowIndex) => (
-                    <div key={rowIndex} className="outKeyRow" style={{
+                    <div key={rowIndex} className="keyRow" style={{
                         marginLeft: rowIndex == 1 ? '1.25rem' : 'auto'
                     }}>
                         {
                             row.map(l => (
-                                <div key={l} className="outKeyLetter">
+                                <div key={l} className="keyLetter">
                                     <button onClick={() => type(l)}>{l}</button>
                                 </div>
                             ))

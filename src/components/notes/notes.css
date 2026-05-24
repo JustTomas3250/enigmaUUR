@@ -1,0 +1,30 @@
+.notes{
+    position: absolute;
+    right: 15rem;
+    top: 8rem;
+    width: 20rem;
+    height: 10rem;
+    border: 0.2rem solid var(--color-secondary);
+    border-radius: 1vw;
+    padding: 0.5rem;
+    background-color: var(--color-primary);
+    text-align: center;
+}
+
+.notes h2{
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+    text-align: center;
+    margin: auto 0;
+}
+
+.notes textarea{
+    width: 98%;
+    height: 80%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: .5vw;
+    color: var(--color-bg);
+    font-size: 1.2rem;
+    resize: none;
+}

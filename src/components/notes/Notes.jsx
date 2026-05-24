@@ -1,5 +1,5 @@
 import React from "react";
-import '../Enigma.css';
+import './notes.css'
 
 function Notes() {
     return (

@@ -1,6 +1,5 @@
 import React from "react";
 import Cable from "./Cable";
-import './setupMode.css';
 
 function Plugboard({ setup }) {
     const letters = [

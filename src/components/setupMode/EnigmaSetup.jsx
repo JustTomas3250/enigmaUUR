@@ -1,10 +1,8 @@
 import React from 'react';
 import WheelHolderSetup from './WheelHolderSetup';
-import './setupMode.css';
-import OutKey from './OutKey';
-import Inkey from './InKey';
+import OutKey from '../enigma/OutKey';
+import Inkey from '../enigma/InKey';
 import PlugboardSetup from './PlugboardSetup';
-import OutLog from './OutLog';
 
 function EnigmaSetup({ setup, setSetup }) {
     return (
@@ -15,10 +13,6 @@ function EnigmaSetup({ setup, setSetup }) {
             <Inkey />
             <hr />
             <PlugboardSetup setSetup={setSetup} setup={setup} />
-            {/*
-                <hr />
-                <OutLog entries={setup} />
-            */}
         </div>
     );
 }

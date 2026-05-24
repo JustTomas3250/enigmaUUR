@@ -1,0 +1,16 @@
+.button{
+    background-color: var(--color-secondary);
+    color: var(--color-bg);
+    font-size: 1.5rem;
+    border: none;
+    border-radius: .5vw;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    position: absolute;
+    bottom: 5.2vw;
+    right: 22vw;
+}
+
+.button:hover{
+    filter: brightness(1.5);
+}

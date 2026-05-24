@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import 'gridstack/dist/gridstack.min.css';
 import { GridStack } from 'gridstack';
-import './setupMode.css';
-import WheelSetup from './WheelSetup';
 import Wheel from './WheelSetup';
 
 function WheelHolderSetup({ setup, setSetup }) {
