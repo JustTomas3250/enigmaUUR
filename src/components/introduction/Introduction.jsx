@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Info from "./Info";
 import Button from "../button/Button";
-import EnigmaSetup from "../setupMode/enigmaSetup";
+import EnigmaSetup from "../setupMode/EnigmaSetup";
 import WheelBox from "../wheelBox/WheelBox";
 import reactXarrowsObj from 'react-xarrows';
 import Enigma from "../enigma/Enigma";
