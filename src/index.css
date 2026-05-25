@@ -22,7 +22,7 @@
 }
 
 body {
-    background-image: url('../Images/woodBackground.jpg');
+    background-image: url('/Images/woodBackground.jpg');
     background-size: cover;
     color: var(--color-bg);
     font-family: 'Roboto', sans-serif;
