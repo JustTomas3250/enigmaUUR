@@ -6,6 +6,10 @@ import WheelBox from "../wheelBox/WheelBox";
 import reactXarrowsObj from 'react-xarrows';
 import Enigma from "../enigma/Enigma";
 import Notes from "../notes/Notes";
+import wheelDrop from "../../../public/Images/wheelDrop.gif"
+import wheelRot from "../../../public/Images/wheelRot.gif"
+import plugBoard from "../../../public/Images/plugBoard.gif"
+import typing from "../../../public/Images/typing.gif"
 
 const Xarrow = reactXarrowsObj.default;
 
@@ -67,7 +71,7 @@ function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage
                             setStage(stage + 1)
                         }}>
                             <p>First, you can choose three of the five rotors and place them into the three designated slots in the Enigma. Keep in mind that the choice and order of the rotors will ultimately result in a completely different encryption.</p>
-                            <img src="/Images/plugBoard.gif"/>
+                            <img src={wheelDrop}/>
                             <br />
                         </Info>
                         <Xarrow
@@ -86,7 +90,7 @@ function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage
                             setStage(stage + 1)
                         }}>
                             <p>Now you can set the starting position of each rotor to a number from 1 to 26 (representing the 26 letters of the alphabet). Choosing different starting positions creates a wider variety of encryption combinations. You can spin the rotors using your mouse wheel or by clicking on the next numbers.</p>
-                            <img src="/Images/wheelRot.gif"/>
+                            <img src={wheelRot}/>
                             <br />
                         </Info>
                     </>
@@ -98,7 +102,7 @@ function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage
                             setStage(stage + 1)
                         }}>
                             <p>Now you can swap letters on the plugboard. Each letter can be connected to only one other letter. Simply click on the first letter (it will turn orange) and then click on the second letter. To remove a connection, just click on either of the connected letters.</p>
-                            <img src="/Images/plugBoard.gif"/>
+                            <img src={plugBoard}/>
                             <br />
                         </Info>
                     </>
@@ -145,7 +149,7 @@ function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage
                             setStage(stage + 1)
                         }}>
                             <p>You can start typing now! Simply press the desired letter on the lower keyboard, and the encrypted letter will briefly light up on the upper lampboard. Heads up, it won't stay lit for long! You can record the resulting letter in the notes on the right. Keep in mind that every keystroke rotates the rotor (or multiple rotors) forward by one step. If you make a mistake, you must manually turn the rotor back by one position.</p>
-                            <img src="/Images/typing.gif"/>
+                            <img src={typing}/>
                             <br />
                         </Info>
                     </>
