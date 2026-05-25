@@ -44,6 +44,10 @@
     border: 0.15rem solid var(--color-secondary);
 }
 
+.info p span{
+    font-weight: bold;
+}
+
 /*XArrow*/
 
 .xarrow{

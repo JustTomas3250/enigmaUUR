@@ -31,7 +31,7 @@ function App() {
                 return (
                     <>
                         <h1>Introduction</h1>
-                        <Introduction setup={setup} setSetup={setSetup} setAlert={setAlert}/>
+                        <Introduction setup={setup} setSetup={setSetup} setAlert={setAlert} letter={letter} setLetter={setLetter} setNavPage={setNavPage}/>
                     </>
                 )
                 break
