@@ -11,6 +11,7 @@ function Nav({ page, setPage }) {
     }
 
     const navItems = [
+        { id: 'introduction', label: 'Introduction'},
         { id: 'sandBoxSetup', label: 'Sandbox' },
         { id: 'missionsSetup', label: 'Missions' },
         { id: 'about', label: 'About' }

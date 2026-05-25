@@ -38,7 +38,7 @@ function WheelBox({ setup}) {
     }, []);
 
     return (
-        <div className="wheelBox grid-stack" ref={gridRef}>
+        <div className="wheelBox grid-stack" ref={gridRef} id="wheelBox">
             {
                 pocatecniDostupnaKola.map((item) => (
                     <div className="grid-stack-item" gs-w="1" gs-h="1" key={item}>

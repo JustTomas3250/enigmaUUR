@@ -13,9 +13,10 @@ import About from './components/about/About';
 
 import './components/enigma/enigma.css'
 import './components/setupMode/setupMode.css'
+import Introduction from './components/introduction/Introduction';
 
 function App() {
-    const [navPage, setNavPage] = useState('sandBoxSetup');
+    const [navPage, setNavPage] = useState('introduction');
     const [setup, setSetup] = useState({
         wheels: [],
         plugboard: []
@@ -26,6 +27,14 @@ function App() {
 
     const renderPage = () => {
         switch (navPage) {
+            case 'introduction':
+                return (
+                    <>
+                        <h1>Introduction</h1>
+                        <Introduction setup={setup} setSetup={setSetup} setAlert={setAlert}/>
+                    </>
+                )
+                break
             case 'sandBoxSetup':
                 return (
                     <>

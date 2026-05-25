@@ -1,0 +1,51 @@
+/*INFO*/
+.info{
+    width: 30%;
+    padding: 1rem;
+    background-color: var(--color-primary);
+    border: 0.2rem solid var(--color-secondary);
+    border-radius: 1rem;
+    color: var(--color-secondary);
+    text-align: center;
+}
+
+.infoRel{
+    margin: auto;
+}
+
+.infoAbs{
+    width: 25%;
+    position: absolute;
+    left: 8rem;
+}
+
+.info p{
+    font-size: 1.4rem;
+    text-align: justify;
+}
+
+.info button{
+    border: .15rem solid var(--color-secondary);
+    background-color: transparent;
+    color: var(--color-secondary);
+    font-size: 1.4rem;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.info button:hover{
+    filter: brightness(150%);
+}
+
+.info img{
+    width: 70%;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    border: 0.15rem solid var(--color-secondary);
+}
+
+/*XArrow*/
+
+.xarrow{
+    z-index: 100;
+}

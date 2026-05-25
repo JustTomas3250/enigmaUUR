@@ -75,7 +75,7 @@ function WheelHolderSetup({ setup, setSetup }) {
     }, [setSetup]);
 
     return (
-        <div className="wheelHolder">
+        <div className="wheelHolder" id="wheelHolderSetup">
             <div className="grid-stack" ref={gridRef}>
                 {
                     console.log("Dostupná kola pro setup: ", pocatecniDostupnaKola) ||
