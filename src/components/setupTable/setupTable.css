@@ -1,0 +1,24 @@
+.setupTable {
+    color: var(--color-secondary);
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+}
+
+.setupTable th{
+    font-size: 1.3rem;
+    padding: .5rem;
+}
+
+.setupTable td{
+    font-size: 1.1rem;
+    padding: .5rem;
+}
+
+.setupTable th{
+    border-bottom: 0.1rem solid var(--color-secondary);
+}
+
+.setupTable .in{
+    border-right: 0.1rem solid var(--color-secondary);
+}

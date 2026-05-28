@@ -78,7 +78,6 @@ function WheelHolderSetup({ setup, setSetup }) {
         <div className="wheelHolder" id="wheelHolderSetup">
             <div className="grid-stack" ref={gridRef}>
                 {
-                    console.log("Dostupná kola pro setup: ", pocatecniDostupnaKola) ||
                     pocatecniDostupnaKola.map((wheel, index) => (
                         <div className="grid-stack-item" gs-w="1" gs-h="1" key={wheel.id}>
                             <Wheel key={index} id={wheel.id} value={wheel.value} />

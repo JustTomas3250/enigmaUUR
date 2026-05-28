@@ -23,7 +23,7 @@ function InKey({ letter, typeLetter, typeMode }) {
                         {
                             row.map(l => (
                                 <div key={l} className="keyLetter">
-                                    <button onClick={() => type(l)}>{l}</button>
+                                    <button onClick={() => type(l)} id={`key-btn-${l}`}>{l}</button>
                                 </div>
                             ))
                         }

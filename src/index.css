@@ -21,9 +21,40 @@
     --color-alert: #f47e10;
 }
 
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 body {
     background-image: url('/Images/woodBackground.jpg');
     background-size: cover;
     color: var(--color-bg);
     font-family: 'Roboto', sans-serif;
+}
+
+.app{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.appContent{
+    display: flex;
+    width: 90%;
+    box-sizing: border-box;
+    gap: 5rem;
+    margin: auto;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.sideComp{
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 20rem;
+    width: 25%;
+    max-width: 25%;
+    text-align: center;
 }

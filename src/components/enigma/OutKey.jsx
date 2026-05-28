@@ -26,8 +26,8 @@ function OutKey({ letterOut, setLetter }) {
                     }}>
                         {
                             row.map(letter => (
-                                <div key={letter} className="keyLetter" style={{backgroundColor: letterOut == letter ? 'var(--color-alert)' : 'transparent'}}>
-                                    <span>{letter}</span>
+                                <div key={letter} className="keyLetter" style={{backgroundColor: letterOut == letter ? 'var(--color-alert)' : 'var(--color-primary-dark)'}}>
+                                    <span id={`out-${letter}`}>{letter}</span>
                                 </div>
                             ))
                         }

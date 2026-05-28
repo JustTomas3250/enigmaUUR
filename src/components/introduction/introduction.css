@@ -15,8 +15,7 @@
 
 .infoAbs{
     width: 25%;
-    position: absolute;
-    left: 8rem;
+    height: fit-content;
 }
 
 .info p{

@@ -13,9 +13,8 @@ import typing from "../../../public/Images/typing.gif"
 
 const Xarrow = reactXarrowsObj.default;
 
-function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage }){
+function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage, prevSetup, setPrevSetup }){
     let [stage, setStage] = useState(0)
-    let [prevSetup, setPrevSetup] = useState(setup)
 
     const renderESstages = [1, 2, 3, 4, 5]
     const renderEstages = [6, 7]
@@ -24,7 +23,7 @@ function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage
         return (
             <>
                 <EnigmaSetup setup={setup} setSetup={setSetup} />
-                <WheelBox setup={setup} />
+                <WheelBox className='sideComp' setup={setup} />
             </>
         )
     }
@@ -33,7 +32,9 @@ function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage
         return (
             <>
                 <Enigma setup={setup} setSetup={setSetup} letter={letter} setLetter={setLetter} />
-                <Notes />
+                <div className='sideComp'>
+                    <Notes />
+                </div>
             </>
         )
     }
@@ -53,7 +54,7 @@ function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage
             case 1:
                 return (
                     <>
-                        <Info position={true} buttonClick={() => {
+                        <Info className='sideComp' position={true} buttonClick={() => {
                             setStage(stage + 1)
                         }}>
                             <p>Here you can see the Enigma setup mode. You can select the appropriate rotors, set their starting positions, and connect the letters on the plugboard.</p>
@@ -155,7 +156,6 @@ function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage
                     </>
                 )
             case 7:
-                console.log(prevSetup)
                 return (
                     <>
                         <Info position={true} buttonClick={() => {

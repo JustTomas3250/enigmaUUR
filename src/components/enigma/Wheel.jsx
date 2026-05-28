@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import 'gridstack/dist/gridstack.min.css';
 import Picker from "react-mobile-picker";
+import RotorPins from "./RotorPins";
 
 function Wheel({ id, position, value }) {
     let opt = []
@@ -20,7 +21,7 @@ function Wheel({ id, position, value }) {
     };
 
     const [pickerValue, setPickerValue] = useState({
-        options: 200 + value
+        options: 1000 + value
     });
 
     return (
@@ -30,30 +31,33 @@ function Wheel({ id, position, value }) {
             data-wheel-value={pickerValue.options % 100} 
         >
             <span className="wheelIdAlign">{id}</span>
-            <div className="wheelPicker">
-                <Picker
-                    value={pickerValue}
-                    onChange={setPickerValue}
-                    wheelMode="natural"
-                    height={150}
-                >
-                    {Object.keys(selections).map(options => (
-                        <Picker.Column key={options} name={options}>
-                            {selections[options].map(option => (
-                                <Picker.Item key={option} value={option}>
-                                    <div className="wheelOptions" style={{
-                                        filter: option === pickerValue.options ? 'brightness(0.5)' : 'none',
-                                        fontWeight: pickerValue.options === option ? 'bold' : 'normal',
-                                        fontSize: pickerValue.options === option ? '1.5em' : '1.2em'
-                                    }}>
-                                        {option % 100}
-                                    </div>
-                                </Picker.Item>
-                            ))}
-                        </Picker.Column>
-                    ))}
-                </Picker>
+            <div style={{ position: 'relative' }}>
+                <div className="wheelPicker">
+                    <Picker
+                        value={pickerValue}
+                        onChange={setPickerValue}
+                        wheelMode="natural"
+                        height={150}
+                    >
+                        {Object.keys(selections).map(options => (
+                            <Picker.Column key={options} name={options}>
+                                {selections[options].map(option => (
+                                    <Picker.Item key={option} value={option}>
+                                        <div className="wheelOptions" style={{
+                                            filter: option === pickerValue.options ? 'brightness(0.5)' : 'none',
+                                            fontWeight: pickerValue.options === option ? 'bold' : 'normal',
+                                            fontSize: pickerValue.options === option ? '1.5em' : '1.2em'
+                                        }}>
+                                            {option % 100}
+                                        </div>
+                                    </Picker.Item>
+                                ))}
+                            </Picker.Column>
+                        ))}
+                    </Picker>
+                </div>
             </div>
+            <RotorPins wheelIndex={position} />
         </div>
     );
 }

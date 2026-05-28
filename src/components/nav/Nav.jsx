@@ -13,6 +13,7 @@ function Nav({ page, setPage }) {
     const navItems = [
         { id: 'introduction', label: 'Introduction'},
         { id: 'sandBoxSetup', label: 'Sandbox' },
+        { id: 'visualizerSetup', label: 'Visualizer' },
         { id: 'missionsSetup', label: 'Missions' },
         { id: 'about', label: 'About' }
     ];

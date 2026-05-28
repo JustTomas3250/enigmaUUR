@@ -1,26 +1,57 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import WheelHolder from "./WheelHolder";
 import OutKey from "./OutKey";
 import Inkey from "./InKey";
 import Plugboard from "./Plugboard";
 
-function Enigma({ setup, setSetup, letter, setLetter }) {
+function Enigma({ setup, setSetup, letter, setLetter, setWriteToNotes, visualizer, setVisualizerValues }) {
     const [letterInWheel, setLetterInWheel] = useState('')
     const [letterOutWheel, setLetterOutWheel] = useState('')
+    const isProcessing = useRef(false)
 
     const typeLetter = (l) => {
-        console.log("typed letter: " + l)
+        if(isProcessing.current)
+            return
+
+        isProcessing.current = true
         setLetterInWheel(l);
     }
 
-    const onCharCiphered = (l) => {
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if(event.target.id == 'textNotes')
+                return
+
+            if (/^[a-zA-Z]$/.test(event.key)) {
+                typeLetter(event.key.toLowerCase())
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [letterInWheel]);
+
+    const onCharCiphered = (l, states) => {
+        if (visualizer != null) {
+            setVisualizerValues(states);
+            setLetterInWheel('');
+            isProcessing.current = false;
+            return;
+        }
+
         setLetterOutWheel(l);
+
+        const wdm = document.querySelector('#WDM');
+        if (wdm && wdm.checked) {
+            setWriteToNotes(l);
+        }
     }
 
     useEffect(() => {
         if (letterOutWheel == '0') {
-            setLetterOutWheel('');
-            setLetterInWheel('');
             setSetup(prev => {
                 const wheelsCopy = prev.wheels.map(w => ({ ...w }));
 
@@ -52,6 +83,10 @@ function Enigma({ setup, setSetup, letter, setLetter }) {
                     wheels: wheelsCopy
                 };
             });
+            isProcessing.current = false;
+            setLetterOutWheel('');
+            setLetterInWheel('');
+            setWriteToNotes('');
         }
     }, [letterOutWheel]);
 

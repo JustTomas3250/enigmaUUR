@@ -6,8 +6,6 @@ import Picker from "react-mobile-picker";
 function WheelSetup({ id, value }) {
     const wheelRef = useRef(null);
 
-    console.log("Renderuji kolo s id: ", id, " a hodnotou: ", value);
-
     let opt = []
 
     for (let i = 1; i <= 20; i++) {

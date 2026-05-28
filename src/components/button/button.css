@@ -6,9 +6,9 @@
     border-radius: .5vw;
     padding: 0.5rem 1rem;
     cursor: pointer;
-    position: absolute;
-    bottom: 5.2vw;
-    right: 22vw;
+    margin-top: 2rem;
+    width: 80%;
+    border: .2rem solid var(--color-primary);
 }
 
 .button:hover{

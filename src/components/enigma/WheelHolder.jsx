@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Wheel from "./Wheel";
+import RotorPins from "./RotorPins";
 
 const ROTORS_FORWARD = [
     [4, 10, 12, 5, 11, 6, 3, 16, 21, 25, 13, 19, 14, 22, 24, 7, 23, 20, 18, 15, 0, 8, 1, 17, 2, 9],
@@ -21,7 +22,11 @@ const ROTORS_BACKWARD = ROTORS_FORWARD.map(rotor => {
 const REFLECTOR_B = [24, 17, 20, 7, 16, 18, 11, 3, 15, 23, 13, 6, 14, 10, 12, 8, 4, 1, 5, 25, 2, 22, 21, 9, 0, 19];
 
 function WheelHolder({ setup, setSetup, letterInWheel, onCharCiphered }) {
-    const [changeLetter, setChangeLetter] = useState(['', '', '', '', '', '']);
+    let states = []
+
+    const saveState = (i) => {
+        states.push(String.fromCharCode(65 + i))
+    }
 
     useEffect(() => {
         if (!letterInWheel || letterInWheel === '') return;
@@ -41,7 +46,8 @@ function WheelHolder({ setup, setSetup, letterInWheel, onCharCiphered }) {
         }));
         
         let currIndex = letterInWheel.toUpperCase().charCodeAt(0) - 65;
-        console.log(`Vstupní písmeno: ${letterInWheel} (Index: ${currIndex})`);
+
+        saveState(currIndex)
 
         let vstupniPismeno = letterInWheel.toUpperCase();
         for (let i = 0; i < setup.plugboard.length; i++) {
@@ -55,6 +61,8 @@ function WheelHolder({ setup, setSetup, letterInWheel, onCharCiphered }) {
             }
         }
 
+        saveState(currIndex)
+
         aktualniStavKol.forEach(wheel => {
             const rotorConfigIndex = (parseInt(wheel.id) - 1) % ROTORS_FORWARD.length; 
             const rotation = (wheel.value - 1) % 26;
@@ -63,10 +71,12 @@ function WheelHolder({ setup, setSetup, letterInWheel, onCharCiphered }) {
             const vnitrniVystup = ROTORS_FORWARD[rotorConfigIndex][vnitrniVstup];
             currIndex = (vnitrniVystup - rotation + 26) % 26;
 
-            console.log(`Wheel ${wheel.id} - Current Index: ${currIndex}`);
+            saveState(currIndex)
         });
 
         currIndex = REFLECTOR_B[currIndex];
+
+        saveState(currIndex)
 
         for (let i = aktualniStavKol.length - 1; i >= 0; i--) {
             const wheel = aktualniStavKol[i];
@@ -77,11 +87,10 @@ function WheelHolder({ setup, setSetup, letterInWheel, onCharCiphered }) {
             const vnitrniVystupZpet = ROTORS_BACKWARD[rotorConfigIndex][vnitrniVstupZpet];
             currIndex = (vnitrniVystupZpet - rotation + 26) % 26;
 
-            console.log(`Wheel ${wheel.id} (zpět) - Current Index: ${currIndex}`);
+            saveState(currIndex)
         }
 
         let letterBeforePlugboard = String.fromCharCode(65 + currIndex);
-        console.log(`Písmeno před plugboardem: ${letterBeforePlugboard} (Index: ${currIndex})`);
 
         for (let i = 0; i < setup.plugboard.length; i++) {
             if (letterBeforePlugboard === setup.plugboard[i].from) {
@@ -94,22 +103,26 @@ function WheelHolder({ setup, setSetup, letterInWheel, onCharCiphered }) {
             }
         }
 
+        saveState(currIndex)
+
         const finalLetter = String.fromCharCode(65 + currIndex);
-        console.log(`Výstupní písmeno: ${finalLetter} (Index: ${currIndex})`);
 
         if (typeof onCharCiphered === 'function') {
-            onCharCiphered(finalLetter);
+            onCharCiphered(finalLetter, states);
         }
 
     }, [letterInWheel]);
 
     return (
         <div className="wheelHolder wheelHolderAlign">
-            {
-                setup.wheels.map((wheel, index) => (
-                    <Wheel key={index} id={wheel.id} position={wheel.position} value={wheel.value} />
-                ))
-            }
+            {setup.wheels.map((wheel, index) => (
+                <Wheel key={index} id={wheel.id} position={index} value={wheel.value} />
+            ))}
+            <div id="reflector-container" style={{ position: 'relative', width: 10 }}>
+                {Array.from({ length: 26 }, (_, i) => (
+                    <div key={i} id={`reflector-pin-${i}`} style={{ height: '3.84%', width: 1, opacity: 0 }} />
+                ))}
+            </div>
         </div>
     );
 }
