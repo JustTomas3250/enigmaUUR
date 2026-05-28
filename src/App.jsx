@@ -13,7 +13,7 @@ import About from './components/about/About';
 import './components/enigma/enigma.css'
 import './components/setupMode/setupMode.css'
 import Introduction from './components/introduction/Introduction';
-import PrevSetup from './components/prevSetup/prevSetup';
+import PrevSetup from './components/prevSetup/PrevSetup';
 import Visualizer from './components/visualizer/Visualizer';
 import Footer from './components/footer/Footer';
 
