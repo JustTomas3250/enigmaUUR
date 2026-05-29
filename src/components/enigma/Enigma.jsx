@@ -25,6 +25,11 @@ function Enigma({ setup, setSetup, letter, setLetter, setWriteToNotes, visualize
             if (/^[a-zA-Z]$/.test(event.key)) {
                 typeLetter(event.key.toLowerCase())
             }
+
+            if(event.key == 'ArrowUp')
+                rotateWheel(-1)
+            if(event.key == 'ArrowDown')
+                rotateWheel(1)
         };
 
         window.addEventListener('keydown', handleKeyDown);
@@ -52,43 +57,47 @@ function Enigma({ setup, setSetup, letter, setLetter, setWriteToNotes, visualize
 
     useEffect(() => {
         if (letterOutWheel == '0') {
-            setSetup(prev => {
-                const wheelsCopy = prev.wheels.map(w => ({ ...w }));
-
-                if (wheelsCopy.length === 0) return prev;
-
-                let otocDruhe = false;
-                let otocTreti = false;
-
-                if (wheelsCopy[0].value === 26) {
-                    otocDruhe = true;
-                }
-
-                if (otocDruhe && wheelsCopy[1] && wheelsCopy[1].value === 26) {
-                    otocTreti = true;
-                }
-
-                wheelsCopy[0].value = (wheelsCopy[0].value % 26) + 1;
-
-                if (otocDruhe && wheelsCopy[1]) {
-                    wheelsCopy[1].value = (wheelsCopy[1].value % 26) + 1;
-                }
-
-                if (otocTreti && wheelsCopy[2]) {
-                    wheelsCopy[2].value = (wheelsCopy[2].value % 26) + 1;
-                }
-
-                return {
-                    ...prev,
-                    wheels: wheelsCopy
-                };
-            });
+            rotateWheel(1)
             isProcessing.current = false;
             setLetterOutWheel('');
             setLetterInWheel('');
             setWriteToNotes('');
         }
     }, [letterOutWheel]);
+
+    const rotateWheel = (num) => {
+        setSetup(prev => {
+            const wheelsCopy = prev.wheels.map(w => ({ ...w }));
+
+            if (wheelsCopy.length === 0) return prev;
+
+            let otocDruhe = false;
+            let otocTreti = false;
+
+            if (wheelsCopy[0].value + num > 26 || wheelsCopy[0].value + num <= 0) {
+                otocDruhe = true;
+            }
+
+            if (otocDruhe && (wheelsCopy[1].value + num > 26 || wheelsCopy[2].value + num <= 0)) {
+                otocTreti = true;
+            }
+
+            wheelsCopy[0].value = (wheelsCopy[0].value + num + 25) % 26 + 1;
+
+            if (otocDruhe && wheelsCopy[1]) {
+                wheelsCopy[1].value = (wheelsCopy[1].value + num + 25) % 26 + 1;
+            }
+
+            if (otocTreti && wheelsCopy[2]) {
+                wheelsCopy[2].value = (wheelsCopy[2].value + num + 25) % 26 + 1
+            }
+
+            return {
+                ...prev,
+                wheels: wheelsCopy
+            };
+        });
+    }
 
     return (
         <div className="enigma">

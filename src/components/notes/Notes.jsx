@@ -30,7 +30,8 @@ function Notes({ writeLetter }) {
             <textarea id="textNotes" onChange={handleTextChange}></textarea>
             <label className="checkbox">
                 <input type="checkbox" id="WDM" onChange={handleCheckboxChange}/>
-                <span>Write decript message</span>
+                <span className="toggle"></span>
+                <span>Write decrypt message</span>
             </label>
         </div>
     );
