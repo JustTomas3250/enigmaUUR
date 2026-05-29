@@ -65,6 +65,8 @@ function App() {
                         setNavPage={setNavPage} 
                         prevSetup={prevSetup} 
                         setPrevSetup={setPrevSetup}
+                        writeToNotes={writeToNotes}
+                        setWriteToNotes={setWriteToNotes}
                     />
                 )
                 break

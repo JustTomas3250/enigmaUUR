@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import Cable from "../enigma/Cable";
 
 function PlugboardSetup({ setSetup, setup }) {
     const [connections, setConnections] = useState(setup.plugboard || []);
     const [activeSocket, setActiveSocket] = useState(null);
+    const [, forceUpdate] = useState(0);
 
     const letters = [
         ['Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O'], 
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K'], 
         ['P', 'Y', 'X', 'C', 'V', 'B', 'N', 'M', 'L']
     ];
+
+    useEffect(() => {
+        const timeout = setTimeout(() => forceUpdate(n => n + 1), 50);
+        return () => clearTimeout(timeout);
+    }, [setup]);
 
     const handleSocketClick = (letter) => {
         let jizKabelMáme = false;
