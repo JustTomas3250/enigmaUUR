@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Cable from "./Cable";
 
 function Plugboard({ setup }) {
+    const [, forceUpdate] = useState(0);
+
     const letters = [
         ['Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O'], 
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K'], 
         ['P', 'Y', 'X', 'C', 'V', 'B', 'N', 'M', 'L']
     ];
+
+    useEffect(() => {
+        const timeout = setTimeout(() => forceUpdate(n => n + 1), 50);
+        return () => clearTimeout(timeout);
+    }, [setup]);
 
     return (
         <div className="plugboard" style={{ position: 'relative' }}>

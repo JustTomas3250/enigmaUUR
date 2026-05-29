@@ -4,7 +4,7 @@ An interactive simulator of the World War II Enigma cipher machine, built with R
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/) version 18 or higher
+- Node.js version 18 or higher
 - npm (included with Node.js)
 
 ## Installation

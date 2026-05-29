@@ -137,7 +137,19 @@ function App() {
                     <>
                         <Visualizer val={visualizerValues} setVal={setVisualizerValues} setAlert={setAlert} />
                         <Enigma setup={setup} setSetup={setSetup} letter={letter} setLetter={setLetter} setWriteToNotes={setWriteToNotes} visualizer={visualizer} setVisualizerValues={setVisualizerValues} />
-                        <div className='sideComp'></div>
+                        <div className='sideComp'>
+                            <Button onClick={() => {
+                                if (setup.wheels.length < 3) {
+                                    setAlert(prev => ([ ...prev, ["To enter the sandbox, please select 3 wheels", 'error'] ]));
+                                    return;
+                                }
+                                setSetup(prevSetup)
+                                setNavPage('visualizerSetup');
+                            }}
+                            >
+                                Return to setup
+                            </Button>
+                        </div>
                     </>
                 );
             case 'missionsSetup':

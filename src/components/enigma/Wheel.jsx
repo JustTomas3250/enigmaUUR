@@ -29,6 +29,7 @@ function Wheel({ id, position, value }) {
             className="wheel"
             data-wheel-id={id} 
             data-wheel-value={pickerValue.options % 100} 
+            id={`rotor-${position}`}
         >
             <span className="wheelIdAlign">{id}</span>
             <div style={{ position: 'relative' }}>

@@ -47,8 +47,8 @@
     font-weight: bold;
 }
 
-/*XArrow*/
-
-.xarrow{
-    z-index: 100;
+.Ibtn{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
 }
