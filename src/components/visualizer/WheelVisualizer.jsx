@@ -15,30 +15,30 @@ const ROTORS_BACKWARD = ROTORS.map(rotor => {
     return invRotor;
 });
 
-function WheelVisualizer({ val, wheelVisual, setup }) {
+function WheelVisualizer({ val, stage, setup }) {
     const stageIDs = [3, 4, 5, 7, 8, 9]
     const wheelNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
     const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
 
     const getArrows = () => {
-        if(!stageIDs.includes(wheelVisual))
+        if(!stageIDs.includes(stage))
             return []
         
         let arrows = []
         let rotorID = 0
-        if (wheelVisual < 6){
-            rotorID = wheelVisual - 3
+        if (stage < 6){
+            rotorID = stage - 3
             
             let wheelID = setup.wheels[rotorID].id - 1
 
             for(let i = 0; i < ROTORS[0].length; i++){
-                const offset = (setup.wheels[rotorID].value - 1) % 26
-                const incomingIndex = alphabet.indexOf(val[wheelVisual - 2])
+                const offset = setup.wheels[rotorID].value - 1
+                const incomingIndex = alphabet.indexOf(val[stage - 2])
                 const highlightIndex = (incomingIndex + offset) % 26
 
                 arrows.push({
                     start: `wd-start-${i}`,
-                    end: `wd-end-${ROTORS[rotorID][i]}`,
+                    end: `wd-end-${ROTORS[wheelID][i]}`,
                     highlight: i === highlightIndex,
                     startLetter: alphabet[(i - offset + 26) % 26],
                     endLetter: alphabet[(ROTORS[wheelID][i] - offset + 26) % 26]
@@ -48,13 +48,13 @@ function WheelVisualizer({ val, wheelVisual, setup }) {
             return arrows
         }
         
-        rotorID = 9 - wheelVisual
+        rotorID = 9 - stage
         
         let wheelID = setup.wheels[rotorID].id - 1
 
         for(let i = 0; i < ROTORS_BACKWARD[0].length; i++){
             const offset = (setup.wheels[rotorID].value - 1) % 26
-            const incomingIndex = alphabet.indexOf(val[wheelVisual - 2])
+            const incomingIndex = alphabet.indexOf(val[stage - 2])
             const highlightIndex = ROTORS_BACKWARD[wheelID].indexOf((incomingIndex + offset) % 26)
 
             arrows.push({
@@ -74,7 +74,7 @@ function WheelVisualizer({ val, wheelVisual, setup }) {
             className="wheelVisualizer"
             id="test"
             style={{
-                'display': stageIDs.includes(wheelVisual) ? 'block' : 'none'
+                'display': stageIDs.includes(stage) ? 'block' : 'none'
             }}
         >
             <h2>Wheel Visualizer</h2>

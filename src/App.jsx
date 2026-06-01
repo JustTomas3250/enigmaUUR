@@ -127,6 +127,7 @@ function App() {
                                 setPrevSetup(setup)
                                 setNavPage('visualizer');
                                 visualizer.current = true
+                                setWheelVisual(0)
                             }}
                             >
                                 Enter Visualizer
@@ -140,7 +141,7 @@ function App() {
                         <Visualizer val={visualizerValues} setVal={setVisualizerValues} setAlert={setAlert} setWheelVisual={setWheelVisual} />
                         <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} visualizer={visualizer} setVisualizerValues={setVisualizerValues} />
                         <div className='sideComp'>
-                            <WheelVisualizer val={visualizerValues} wheelVisual={wheelVisual} setup={setup} />
+                            <WheelVisualizer val={visualizerValues} stage={wheelVisual} setup={setup} />
                             <Button onClick={() => {
                                 setSetup(prevSetup)
                                 setNavPage('visualizerSetup');

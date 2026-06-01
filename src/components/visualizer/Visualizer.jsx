@@ -9,7 +9,7 @@ const STEPS = [
     {label: "Press any key on the Enigma machine to begin.",    description: null},
     {label: "Step 1 — Input key",                               description: "You pressed a key on the keyboard. The signal now travels to the plugboard."},
     {label: "Step 2 — Plugboard (in)",                          description: "If this letter is connected to another via a cable on the plugboard, the signal is swapped to the connected letter. Otherwise it passes through unchanged."},
-    {label: "Step 3 — Rotor 1 (forward)",                       description: "The signal enters the first rotor. Each rotor scrambles the letter according to its internal wiring and current rotation position."},
+    {label: "Step 3 — Rotor 1 (forward)",                       description: "The signal enters the first rotor. Each rotor scrambles the letter according to its internal wiring and current rotation position. You can see the wiring with highlighted current position in Wheel Visualizer card on the right"},
     {label: "Step 4 — Rotor 2 (forward)",                       description: "The scrambled signal continues through the second rotor, which applies its own substitution."},
     {label: "Step 5 — Rotor 3 (forward)",                       description: "The signal passes through the third rotor. After this, it reaches the reflector."},
     {label: "Step 6 — Reflector",                               description: "The reflector maps the signal to a completely different letter and sends it back through the rotors in reverse. This is what makes Enigma self-inverse."},
