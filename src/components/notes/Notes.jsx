@@ -1,7 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './notes.css'
+import Tooltip from "./Tooltip";
 
-function Notes({ writeLetter }) {
+function Notes({ writeLetter, decryptingVals, setup, setSetup }) {
+    const [transformationList, setTransformationList] = useState([])
+
+    useEffect(() => {
+        if(decryptingVals.length == 0) return
+
+        setTransformationList(prev => [{
+            letters: decryptingVals, 
+            setup: setup
+        }, ...prev].slice(0, 20))
+    }, [decryptingVals])
+
     useEffect(() => {
         const savedText = localStorage.getItem('notesText');
         const savedCheckbox = localStorage.getItem('notesWDM');
@@ -33,6 +45,41 @@ function Notes({ writeLetter }) {
                 <span className="toggle"></span>
                 <span>Write decrypt message</span>
             </label>
+            <h2>Transformation</h2>
+            <div className="transformation">
+                {
+                    transformationList.map((tr, i) => (
+                        <Tooltip 
+                            text={'Wheel positions: ' + tr['setup'].wheels.map((w) => {return w.value})} 
+                            key={i}
+                        >
+                            <p 
+                                style={{
+                                    color: i != 0 ? '#afafaf' : '',
+                                    borderColor: i != 0 ? 'var(--color-primary-dark)' : ''
+                                }}
+                                onClick={() => {
+                                    setSetup(tr['setup'])
+                                    setTransformationList(prev => prev.slice(i))
+                                }}
+                            >
+                                {
+                                    tr['letters'] && tr['letters'].map((l, j) => (
+                                        <React.Fragment key={j}>
+                                            <span
+                                                style={{
+                                                    fontSize: j == 0 || j == tr['letters'].length - 1 ? '1.4rem' : '.9rem'
+                                                }}
+                                            >{l}</span>
+                                            {j < tr['letters'].length - 1 ? '→' : ''}
+                                        </React.Fragment>
+                                    ))   
+                                }
+                            </p>
+                        </Tooltip>
+                    ))
+                }
+            </div>
         </div>
     );
 }

@@ -4,7 +4,7 @@ import OutKey from "./OutKey";
 import Inkey from "./InKey";
 import Plugboard from "./Plugboard";
 
-function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setVisualizerValues, setHistory }) {
+function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setdecryptingVals, setHistory }) {
     const [letterInWheel, setLetterInWheel] = useState('')
     const [letterOutWheel, setLetterOutWheel] = useState('')
     const [pressedKeys, setPressedKeys] = useState(new Set())
@@ -16,9 +16,10 @@ function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setVisualizerVal
 
         isProcessing.current = true
         setLetterInWheel(l)
+        setWriteToNotes('')
 
         if (typeof setHistory === 'function') {
-            setHistory(prev => ({ ...prev, input: l.toUpperCase() }))
+            setHistory(prev => ({ input: l.toUpperCase(), output: null }))
         }
     }
 
@@ -56,13 +57,13 @@ function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setVisualizerVal
     }, [letterInWheel])
 
     const onCharCiphered = (l, states) => {
+        setdecryptingVals(states)
         if (visualizer != null) {
-            setVisualizerValues(states)
             setLetterInWheel('')
             isProcessing.current = false
             return
         }
-
+        
         rotateWheel(1)
         setLetterOutWheel(l)
         setLetterInWheel('')

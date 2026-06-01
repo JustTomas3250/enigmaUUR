@@ -30,7 +30,7 @@ function App() {
     const [prevSetup, setPrevSetup] = useState(setup)
     const [writeToNotes, setWriteToNotes] = useState('')
     const visualizer = useRef(false)
-    const [visualizerValues, setVisualizerValues] = useState([])
+    const [decryptingVals, setdecryptingVals] = useState([])
     const [history, setHistory] = useState({})
     const [wheelVisual, setWheelVisual] = useState(0)
 
@@ -98,9 +98,9 @@ function App() {
                         <div className='sideComp'>
                             <PrevSetup prevSetup={prevSetup} history={history} />
                         </div>
-                        <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} setHistory={setHistory} />
+                        <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} setHistory={setHistory} setdecryptingVals={setdecryptingVals} />
                         <div className='sideComp'>
-                            <Notes writeLetter={writeToNotes} />
+                            <Notes writeLetter={writeToNotes} decryptingVals={decryptingVals} setup={setup} setSetup={setSetup} />
                             <Button onClick={() => {
                                 setSetup(prevSetup)
                                 setNavPage('sandBoxSetup');
@@ -138,10 +138,10 @@ function App() {
             case 'visualizer':
                 return (
                     <>
-                        <Visualizer val={visualizerValues} setVal={setVisualizerValues} setAlert={setAlert} setWheelVisual={setWheelVisual} />
-                        <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} visualizer={visualizer} setVisualizerValues={setVisualizerValues} />
+                        <Visualizer val={decryptingVals} setVal={setdecryptingVals} setAlert={setAlert} setWheelVisual={setWheelVisual} />
+                        <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} visualizer={visualizer} setdecryptingVals={setdecryptingVals} />
                         <div className='sideComp'>
-                            <WheelVisualizer val={visualizerValues} stage={wheelVisual} setup={setup} />
+                            <WheelVisualizer val={decryptingVals} stage={wheelVisual} setup={setup} />
                             <Button onClick={() => {
                                 setSetup(prevSetup)
                                 setNavPage('visualizerSetup');
@@ -180,7 +180,7 @@ function App() {
                         <div className='sideComp'>
                             <MissionText setup={setup} />
                         </div>
-                        <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} />
+                        <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} setdecryptingVals={setdecryptingVals} />
                         <div className='sideComp'>
                             <Notes writeLetter={writeToNotes} />
                             <Button onClick={() => {
