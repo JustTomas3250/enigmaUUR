@@ -15,3 +15,46 @@
     text-align: center;
     margin: auto 0;
 }
+
+.prevSetup h3{
+    color: var(--color-secondary);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: auto 0;
+}
+
+.history{
+    max-width: 98%;
+    height: 10rem;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: .5vw;
+    color: var(--color-bg);
+    font-size: 1.1rem;
+    padding: .5rem;
+    text-align: justify;
+    overflow-wrap: anywhere;
+}
+
+.clearHistory{
+    appearance: none;
+    border: 0.1rem solid var(--color-secondary);
+    border-radius: 0.3rem;
+    background-color: transparent;
+    color: var(--color-secondary);
+    font-size: 1rem;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+.clearHistory:hover{
+    background-color: var(--color-primary-dark);
+}
+
+.historyInputHeader {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

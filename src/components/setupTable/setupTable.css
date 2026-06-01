@@ -2,6 +2,7 @@
     color: var(--color-secondary);
     width: 100%;
     margin-top: 2rem;
+    margin-bottom: 1rem;
     border-collapse: collapse;
 }
 

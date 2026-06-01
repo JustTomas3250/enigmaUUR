@@ -4,7 +4,7 @@ import OutKey from "./OutKey";
 import Inkey from "./InKey";
 import Plugboard from "./Plugboard";
 
-function Enigma({ setup, setSetup, letter, setLetter, setWriteToNotes, visualizer, setVisualizerValues }) {
+function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setVisualizerValues, setHistory }) {
     const [letterInWheel, setLetterInWheel] = useState('')
     const [letterOutWheel, setLetterOutWheel] = useState('')
     const isProcessing = useRef(false)
@@ -15,6 +15,12 @@ function Enigma({ setup, setSetup, letter, setLetter, setWriteToNotes, visualize
 
         isProcessing.current = true
         setLetterInWheel(l);
+        if (typeof setHistory === 'function') {
+            setHistory(prev => ({
+                ...prev,
+                input: l.toUpperCase()
+            }))
+        }
     }
 
     useEffect(() => {
@@ -49,6 +55,13 @@ function Enigma({ setup, setSetup, letter, setLetter, setWriteToNotes, visualize
 
         setLetterOutWheel(l);
 
+        if (typeof setHistory === 'function') {
+            setHistory(prev => ({
+                ...prev,
+                output: l
+            }))
+        }
+
         const wdm = document.querySelector('#WDM');
         if (wdm && wdm.checked) {
             setWriteToNotes(l);
@@ -62,6 +75,7 @@ function Enigma({ setup, setSetup, letter, setLetter, setWriteToNotes, visualize
             setLetterOutWheel('');
             setLetterInWheel('');
             setWriteToNotes('');
+            setHistory({})
         }
     }, [letterOutWheel]);
 
@@ -104,7 +118,7 @@ function Enigma({ setup, setSetup, letter, setLetter, setWriteToNotes, visualize
             <WheelHolder setup={setup} setSetup={setSetup} letterInWheel={letterInWheel} onCharCiphered={onCharCiphered} />
             <OutKey letterOut={letterOutWheel} setLetter={setLetterOutWheel}/>
             <hr />
-            <Inkey letter={letter} typeLetter={typeLetter} typeMode={true} />
+            <Inkey typeLetter={typeLetter} typeMode={true} />
             <hr />
             <Plugboard setup={setup} />
         </div>

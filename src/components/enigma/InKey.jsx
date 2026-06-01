@@ -1,6 +1,6 @@
 import React from "react";
 
-function InKey({ letter, typeLetter, typeMode }) {
+function InKey({ typeLetter, typeMode }) {
     const letters = [
         ['Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O'], 
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K'], 

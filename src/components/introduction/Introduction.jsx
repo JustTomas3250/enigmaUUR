@@ -10,7 +10,7 @@ import wheelRot from "../../../public/Images/wheelRot.gif"
 import plugBoard from "../../../public/Images/plugBoard.gif"
 import typing from "../../../public/Images/typing.gif"
 
-function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage, prevSetup, setPrevSetup, writeToNotes, setWriteToNotes }){
+function Introduction({ setup, setSetup, setAlert, setNavPage, prevSetup, setPrevSetup, writeToNotes, setWriteToNotes }){
     let [stage, setStage] = useState(0)
 
     const renderESstages = [1, 2, 3, 4, 5]
@@ -28,7 +28,7 @@ function Introduction({ setup, setSetup, setAlert, letter, setLetter, setNavPage
     const renderE = () => {
         return (
             <>
-                <Enigma setup={setup} setSetup={setSetup} letter={letter} setLetter={setLetter} setWriteToNotes={setWriteToNotes} />
+                <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} />
                 <div className='sideComp'>
                     <Notes writeLetter={writeToNotes} />
                 </div>

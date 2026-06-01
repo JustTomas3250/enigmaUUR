@@ -26,11 +26,11 @@ function App() {
         return saved ? JSON.parse(saved) : { wheels: [], plugboard: [] };
     });
     const [alert, setAlert] = useState([]);
-    const [letter, setLetter] = useState('');
     const [prevSetup, setPrevSetup] = useState(setup)
     const [writeToNotes, setWriteToNotes] = useState('')
     const visualizer = useRef(false)
     const [visualizerValues, setVisualizerValues] = useState([])
+    const [history, setHistory] = useState({})
 
     useEffect(() => {
         localStorage.setItem('navPage', navPage);
@@ -60,8 +60,6 @@ function App() {
                         setup={setup} 
                         setSetup={setSetup} 
                         setAlert={setAlert} 
-                        letter={letter} 
-                        setLetter={setLetter} 
                         setNavPage={setNavPage} 
                         prevSetup={prevSetup} 
                         setPrevSetup={setPrevSetup}
@@ -96,9 +94,9 @@ function App() {
                 return (
                     <>
                         <div className='sideComp'>
-                            <PrevSetup prevSetup={prevSetup} />
+                            <PrevSetup prevSetup={prevSetup} history={history} />
                         </div>
-                        <Enigma setup={setup} setSetup={setSetup} letter={letter} setLetter={setLetter} setWriteToNotes={setWriteToNotes} />
+                        <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} setHistory={setHistory} />
                         <div className='sideComp'>
                             <Notes writeLetter={writeToNotes} />
                             <Button onClick={() => {
@@ -138,7 +136,7 @@ function App() {
                 return (
                     <>
                         <Visualizer val={visualizerValues} setVal={setVisualizerValues} setAlert={setAlert} />
-                        <Enigma setup={setup} setSetup={setSetup} letter={letter} setLetter={setLetter} setWriteToNotes={setWriteToNotes} visualizer={visualizer} setVisualizerValues={setVisualizerValues} />
+                        <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} visualizer={visualizer} setVisualizerValues={setVisualizerValues} />
                         <div className='sideComp'>
                             <Button onClick={() => {
                                 if (setup.wheels.length < 3) {
@@ -182,7 +180,7 @@ function App() {
                         <div className='sideComp'>
                             <MissionText setup={setup} />
                         </div>
-                        <Enigma setup={setup} setSetup={setSetup} letter={letter} setLetter={setLetter} setWriteToNotes={setWriteToNotes} />
+                        <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} />
                         <div className='sideComp'>
                             <Notes writeLetter={writeToNotes} />
                             <Button onClick={() => {
