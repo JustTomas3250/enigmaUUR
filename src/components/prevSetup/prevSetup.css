@@ -25,7 +25,7 @@
 
 .history{
     max-width: 98%;
-    height: 10rem;
+    height: 8rem;
     border: none;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: .5vw;
@@ -34,6 +34,7 @@
     padding: .5rem;
     text-align: justify;
     overflow-wrap: anywhere;
+    overflow-y: auto;
 }
 
 .clearHistory{

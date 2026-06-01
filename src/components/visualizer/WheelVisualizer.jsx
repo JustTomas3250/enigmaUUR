@@ -69,9 +69,6 @@ function WheelVisualizer({ val, wheelVisual, setup }) {
         return arrows
     }
 
-    /*useEffect(() => {
-    }, [wheelVisual])*/
-
     return (
         <div
             className="wheelVisualizer"

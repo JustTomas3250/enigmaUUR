@@ -3,30 +3,26 @@ import './prevSetup.css'
 import SetupTable from "../setupTable/SetupTable";
 
 function PrevSetup({ prevSetup, history }){
-    const [inText, setInText] = useState(localStorage.getItem('inHistory') || '')
-    const [outText, setOutText] = useState(localStorage.getItem('outHistory') || '')
+    const [inText, setInText] = useState('')
+    const [outText, setOutText] = useState('')
 
     const clearHistory = () => {
         setInText('')
         setOutText('')
-        localStorage.setItem('inHistory', '');
-        localStorage.setItem('outHistory', '');
     }
 
     useEffect(() => {
         if (history && history['output'] != null){
             setInText(prev => {
                 const next = prev + history['input'];
-                localStorage.setItem('inHistory', next);
                 return next;
             })
             setOutText(prev => {
                 const next = prev + history['output'];
-                localStorage.setItem('outHistory', next);
                 return next;
             })
         }
-    }, [history])
+    }, [history['output']])
 
     return (
         <div className="prevSetup">
