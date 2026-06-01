@@ -20,12 +20,17 @@ function WheelVisualizer({ val, stage, setup }) {
     const wheelNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
     const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
 
+    if (!stageIDs.includes(stage)) return null;
+
     const getArrows = () => {
         if(!stageIDs.includes(stage))
             return []
         
         let arrows = []
         let rotorID = 0
+
+        const incomingIndex = alphabet.indexOf(val[stage - 2])
+
         if (stage < 6){
             rotorID = stage - 3
             
@@ -33,7 +38,6 @@ function WheelVisualizer({ val, stage, setup }) {
 
             for(let i = 0; i < ROTORS[0].length; i++){
                 const offset = setup.wheels[rotorID].value - 1
-                const incomingIndex = alphabet.indexOf(val[stage - 2])
                 const highlightIndex = (incomingIndex + offset) % 26
 
                 arrows.push({
@@ -54,7 +58,6 @@ function WheelVisualizer({ val, stage, setup }) {
 
         for(let i = 0; i < ROTORS_BACKWARD[0].length; i++){
             const offset = (setup.wheels[rotorID].value - 1) % 26
-            const incomingIndex = alphabet.indexOf(val[stage - 2])
             const highlightIndex = ROTORS_BACKWARD[wheelID].indexOf((incomingIndex + offset) % 26)
 
             arrows.push({
@@ -98,12 +101,10 @@ function WheelVisualizer({ val, stage, setup }) {
                         key={i}
                         start={arrow.start}
                         end={arrow.end}
-                        strokeWidth={arrow.highlight ? 2 : 1}
-                        headSize={6}
-                        curveness={0.3}
-                        zIndex={1000}
+                        strokeWidth={arrow.highlight ? 3 : 1}
+                        zIndex={arrow.highlight ? 200 : 100}
                         color={arrow.highlight ? 'red' : 'black'}
-                        headSize='0'
+                        headSize={0}
                         path='straight'
                         labels={{
                             start: <div style={{marginTop: '1rem', marginLeft: '-2.9rem' , color: arrow.highlight ? 'red' : 'black'}} >{arrow.startLetter}</div>,
