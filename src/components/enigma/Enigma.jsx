@@ -3,20 +3,34 @@ import WheelHolder from "./WheelHolder";
 import OutKey from "./OutKey";
 import Inkey from "./InKey";
 import Plugboard from "./Plugboard";
+import { rotateWheel } from './rotateWheel.js'
 
 function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setdecryptingVals, setHistory }) {
     const [letterInWheel, setLetterInWheel] = useState('')
     const [letterOutWheel, setLetterOutWheel] = useState('')
     const [pressedKeys, setPressedKeys] = useState(new Set())
     const isProcessing = useRef(false)
-    const outClearTimeout = useRef(null)
+
+    let timeOut
+
+    const clearValues = () => {
+        if(visualizer)
+            return
+        if(timeOut)
+            clearTimeout(timeOut)
+        timeOut = setTimeout(() => {
+            setLetterOutWheel('')
+            setdecryptingVals([])
+            setWriteToNotes('')
+            setHistory({})
+        }, 500)
+    }
 
     const typeLetter = (l) => {
         if (isProcessing.current) return
 
         isProcessing.current = true
         setLetterInWheel(l)
-        setWriteToNotes('')
 
         if (typeof setHistory === 'function') {
             setHistory(prev => ({ input: l.toUpperCase(), output: null }))
@@ -33,8 +47,8 @@ function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setdecryptingVal
                 typeLetter(event.key.toLowerCase())
             }
 
-            if (event.key == 'ArrowUp') rotateWheel(-1)
-            if (event.key == 'ArrowDown') rotateWheel(1)
+            if (event.key == 'ArrowUp') setSetup(prev => rotateWheel(-1, prev))
+            if (event.key == 'ArrowDown') setSetup(prev => rotateWheel(1, prev))
         }
 
         const handleKeyUp = (event) => {
@@ -44,7 +58,7 @@ function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setdecryptingVal
                     next.delete(event.key.toUpperCase())
                     return next
                 })
-                setLetterOutWheel('')
+                clearValues()
             }
         }
 
@@ -58,16 +72,15 @@ function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setdecryptingVal
 
     const onCharCiphered = (l, states) => {
         setdecryptingVals(states)
+        isProcessing.current = false
         if (visualizer != null) {
             setLetterInWheel('')
-            isProcessing.current = false
             return
         }
         
-        rotateWheel(1)
+        setSetup(prev => rotateWheel(1, prev))
         setLetterOutWheel(l)
         setLetterInWheel('')
-        isProcessing.current = false
 
         if (typeof setHistory === 'function') {
             setHistory(prev => ({ ...prev, output: l }))
@@ -79,7 +92,7 @@ function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setdecryptingVal
         }
     }
 
-    const rotateWheel = (num) => {
+    /*const rotateWheel = (num) => {
         setSetup(prev => {
             const wheelsCopy = prev.wheels.map(w => ({ ...w }))
             if (wheelsCopy.length === 0) return prev
@@ -105,7 +118,7 @@ function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setdecryptingVal
 
             return { ...prev, wheels: wheelsCopy }
         })
-    }
+    }*/
 
     const handleMouseDown = (l) => {
         setPressedKeys(prev => new Set([...prev, l.toUpperCase()]))
@@ -118,7 +131,7 @@ function Enigma({ setup, setSetup, setWriteToNotes, visualizer, setdecryptingVal
             next.delete(l.toUpperCase())
             return next
         })
-        setLetterOutWheel('')
+        clearValues()
     }
 
     return (

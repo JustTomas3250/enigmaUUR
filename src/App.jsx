@@ -182,7 +182,7 @@ function App() {
                         </div>
                         <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} setdecryptingVals={setdecryptingVals} />
                         <div className='sideComp'>
-                            <Notes writeLetter={writeToNotes} />
+                            <Notes writeLetter={writeToNotes} decryptingVals={decryptingVals} setup={setup} setSetup={setSetup} />
                             <Button onClick={() => {
                                 setSetup(prevSetup)
                                 setNavPage('missionsSetup');

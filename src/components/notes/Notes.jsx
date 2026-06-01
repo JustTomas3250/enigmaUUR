@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './notes.css'
 import Tooltip from "./Tooltip";
+import { rotateWheel } from '../enigma/rotateWheel.js'
 
 function Notes({ writeLetter, decryptingVals, setup, setSetup }) {
     const [transformationList, setTransformationList] = useState([])
@@ -10,7 +11,7 @@ function Notes({ writeLetter, decryptingVals, setup, setSetup }) {
 
         setTransformationList(prev => [{
             letters: decryptingVals, 
-            setup: setup
+            setup: rotateWheel(-1, setup)
         }, ...prev].slice(0, 20))
     }, [decryptingVals])
 
@@ -60,7 +61,7 @@ function Notes({ writeLetter, decryptingVals, setup, setSetup }) {
                                 }}
                                 onClick={() => {
                                     setSetup(tr['setup'])
-                                    setTransformationList(prev => prev.slice(i))
+                                    setTransformationList(prev => prev.slice(i + 1))
                                 }}
                             >
                                 {
