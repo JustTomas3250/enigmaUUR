@@ -6,7 +6,7 @@ import RotorPins from "./RotorPins";
 function Wheel({ id, position, value }) {
     let opt = []
     
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 5; i++) {
         for (let j = 1; j <= 26; j++) {
             opt.push(i * 100 + j);
         }
@@ -21,7 +21,7 @@ function Wheel({ id, position, value }) {
     };
 
     const [pickerValue, setPickerValue] = useState({
-        options: 1000 + value
+        options: 200 + value
     });
 
     return (

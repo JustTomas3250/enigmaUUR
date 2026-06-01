@@ -8,7 +8,7 @@ function WheelSetup({ id, value }) {
 
     let opt = []
 
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 5; i++) {
         for (let j = 1; j <= 26; j++) {
             opt.push(i * 100 + j);
         }
@@ -19,11 +19,11 @@ function WheelSetup({ id, value }) {
     };
 
     useEffect(() => {
-        value !== undefined && setPickerValue({ options: 1000 + value });
+        value !== undefined && setPickerValue({ options: 200 + value });
     }, [value]);
 
     const [pickerValue, setPickerValue] = useState({
-        options: value || 1001
+        options: value || 201
     });
 
     const handlePickerChange = (newValue) => {
