@@ -21,9 +21,8 @@ const STEPS = [
     {label: "Result — Output letter",                           description: "The final encrypted letter lights up on the lampboard. This is your ciphertext letter!"}
 ];
 
-function Visualizer({ val, setVal, setAlert }) {
+function Visualizer({ val, setVal, setAlert, setWheelVisual }) {
     const [stage, setStage] = useState(0);
-    //const [arrows, setArrows] = useState([]);
 
     const letterIndex = (l) => l.toUpperCase().charCodeAt(0) - 65;
 
@@ -62,19 +61,23 @@ function Visualizer({ val, setVal, setAlert }) {
                 return;
             }
             setStage(1);
+            setWheelVisual(1);
             return;
         }
 
         if (stage >= 12) {
             setStage(0);
+            setWheelVisual(0)
             setVal([]);
             return;
         }
 
+        setWheelVisual(stage != 9 ? stage + 1 : stage + 2)
         stage != 9 ? setStage(stage + 1) : setStage(stage + 2)
     };
 
     const handlePrev = () => {
+        setWheelVisual(stage != 11 ? stage - 1 : stage - 2)
         stage != 11 ? setStage(stage - 1) : setStage(stage - 2)
     }
 

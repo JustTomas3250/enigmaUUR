@@ -1,9 +1,3 @@
-// Každá mise má:
-// - title, story, ciphertext (co uživatel dešifruje)
-// - solution (správný plaintext bez mezer, uppercase)
-// - hint: co víme o nastavení (zobrazí se uživateli)
-// - setup: správné nastavení Enigmy
-
 export const MISSIONS = [
     {
         id: 1,

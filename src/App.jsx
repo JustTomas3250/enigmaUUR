@@ -16,6 +16,7 @@ import Introduction from './components/introduction/Introduction';
 import PrevSetup from './components/prevSetup/PrevSetup';
 import Visualizer from './components/visualizer/Visualizer';
 import Footer from './components/footer/Footer';
+import WheelVisualizer from './components/visualizer/WheelVisualizer';
 
 function App() {
     const [navPage, setNavPage] = useState(() => 
@@ -31,6 +32,7 @@ function App() {
     const visualizer = useRef(false)
     const [visualizerValues, setVisualizerValues] = useState([])
     const [history, setHistory] = useState({})
+    const [wheelVisual, setWheelVisual] = useState(0)
 
     useEffect(() => {
         localStorage.setItem('navPage', navPage);
@@ -135,14 +137,11 @@ function App() {
             case 'visualizer':
                 return (
                     <>
-                        <Visualizer val={visualizerValues} setVal={setVisualizerValues} setAlert={setAlert} />
+                        <Visualizer val={visualizerValues} setVal={setVisualizerValues} setAlert={setAlert} setWheelVisual={setWheelVisual} />
                         <Enigma setup={setup} setSetup={setSetup} setWriteToNotes={setWriteToNotes} visualizer={visualizer} setVisualizerValues={setVisualizerValues} />
                         <div className='sideComp'>
+                            <WheelVisualizer val={visualizerValues} wheelVisual={wheelVisual} setup={setup} />
                             <Button onClick={() => {
-                                if (setup.wheels.length < 3) {
-                                    setAlert(prev => ([ ...prev, ["To enter the sandbox, please select 3 wheels", 'error'] ]));
-                                    return;
-                                }
                                 setSetup(prevSetup)
                                 setNavPage('visualizerSetup');
                             }}
